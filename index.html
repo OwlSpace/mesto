@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mesto</title>
+    <link rel="stylesheet" href="pages/index.css">
+</head>
+<body class="page">
+<header class="header">
+    <img src="images/logo1.svg" alt="логотип" class="header__logo">
+</header>
+<main>
+
+    <section class="profile">
+        <img src="images/avatar.png" alt="фото_пользователя" class="profile__avatar">
+
+        <article class="infoUser">
+            <h1 class="infoUser__name">Жак-Ив Кусто</h1>
+            <button type="button" class="infoUser__edit"></button>
+            <p class="infoUser__job">Исследователь океана</p>
+        </article>
+        <button class="profile__add"></button>
+    </section>
+
+    <section class="elements">
+        <ul class="elements__list">
+            <li class="element">
+                <img src="images/karahaevo_herkeccia.png" alt="Карачаево-Черкессия" class="element__image">
+                <div class="element__container">
+                    <h2 class="element__title">
+                        Карачаево-Черкессия
+                    </h2>
+                    <button type="button" class="element__like"></button>
+                </div>
+            </li>
+
+            <li class="element">
+                <img src="images/elbryse.png" alt="эльбрус" class="element__image">
+                <div class="element__container">
+                    <h2 class="element__title">
+                        Гора Эльбрус
+                    </h2>
+                    <button type="button" class="element__like"></button>
+                </div>
+            </li>
+
+            <li class="element">
+                <img src="images/dombai.png" alt="домбай" class="element__image">
+                <div class="element__container">
+                    <h2 class="element__title">
+                        Домбай
+                    </h2>
+                    <button type="button" class="element__like"></button>
+                </div>
+            </li>
+
+            <li class="element">
+                <img src="images/cape_Flotsky.jpg" alt="Мыс Флотский" class="element__image">
+                <div class="element__container">
+                    <h2 class="element__title">
+                        Мыс Флотский
+                    </h2>
+                    <button type="button" class="element__like"></button>
+                </div>
+            </li>
+
+            <li class="element">
+                <img src="images/orekhovo.jpg" alt="орехово" class="element__image">
+                <div class="element__container">
+                    <h2 class="element__title">
+                        Орехово
+                    </h2>
+                    <button type="button" class="element__like"></button>
+                </div>
+            </li>
+
+            <li class="element">
+                <img src="images/rieserferner-Ahrn.jpg" alt="hизерфернер-Арн" class="element__image">
+                <div class="element__container">
+                    <h2 class="element__title">
+                        Ризерфернер-Арн
+                    </h2>
+                    <button type="button" class="element__like"></button>
+                </div>
+            </li>
+
+        </ul>
+    </section>
+
+    <section class="popup">
+        <form class="popup__form">
+            <fieldset class="popup__section">
+                <p class="popup__title">Редактировать профиль</p>
+                <label class="popup__fields">
+                    <input type="text" class="popup__field popup__field_name">
+                    <input type="text" class="popup__field popup__field_job">
+                </label>
+                <button type="submit" class="popup__save">Сохранить</button>
+            </fieldset>
+            <button type="button" class="popup__close"></button>
+        </form>
+        <div class="popup__overlay"></div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <p class="footer__author">&copy;2022 Mesto Russia</p>
+</footer>
+
+<script src="javaScript/index.js"></script>
+
+</body>
+</html>

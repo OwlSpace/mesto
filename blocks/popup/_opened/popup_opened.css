@@ -1,0 +1,8 @@
+.popup_opened {
+    display: flex;
+}
+
+.popup__overlay{
+    opacity: 1;
+    visibility: visible;
+}

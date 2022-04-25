@@ -1,0 +1,75 @@
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("Inter-Regular.woff2?v=3.19") format("woff2"),
+       url("Inter-Regular.woff?v=3.19") format("woff");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("Inter-Bold.woff2?v=3.19") format("woff2"),
+       url("Inter-Bold.woff?v=3.19") format("woff");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("Inter-Black.woff2?v=3.19") format("woff2"),
+       url("Inter-Black.woff?v=3.19") format("woff");
+}
+
+
+/* -------------------------------------------------------
+Variable fonts.
+Usage:
+
+  html { fonts-family: 'Inter', sans-serif; }
+  @supports (fonts-variation-settings: normal) {
+    html { fonts-family: 'Inter var', sans-serif; }
+  }
+*/
+/*@fonts-face {*/
+/*  fonts-family: 'Inter var';*/
+/*  fonts-weight: 100 900;*/
+/*  fonts-display: swap;*/
+/*  fonts-style: normal;*/
+/*  fonts-named-instance: 'Regular';*/
+/*  src: url("Inter-roman.var.woff2?v=3.19") format("woff2");*/
+/*}*/
+/*@fonts-face {*/
+/*  fonts-family: 'Inter var';*/
+/*  fonts-weight: 100 900;*/
+/*  fonts-display: swap;*/
+/*  fonts-style: italic;*/
+/*  fonts-named-instance: 'Italic';*/
+/*  src: url("Inter-italic.var.woff2?v=3.19") format("woff2");*/
+/*}*/
+
+
+/* --------------------------------------------------------------------------
+[EXPERIMENTAL] Multi-axis, single variable fonts.
+
+Slant axis is not yet widely supported (as of February 2019) and thus this
+multi-axis single variable fonts is opt-in rather than the default.
+
+When using this, you will probably need to set fonts-variation-settings
+explicitly, e.g.
+
+  * { fonts-variation-settings: "slnt" 0deg }
+  .italic { fonts-variation-settings: "slnt" 10deg }
+
+*/
+/*@fonts-face {*/
+/*  fonts-family: 'Inter var experimental';*/
+/*  fonts-weight: 100 900;*/
+/*  fonts-display: swap;*/
+/*  fonts-style: oblique 0deg 10deg;*/
+/*  src: url("Inter.var.woff2?v=3.19") format("woff2");*/
+/*}*/
