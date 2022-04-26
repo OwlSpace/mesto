@@ -5,11 +5,9 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    margin: 0;
 }
 
 .popup__field:focus {
     outline: none;
-}
-.popup__field:first-child{
-    margin-bottom: 30px;
 }
