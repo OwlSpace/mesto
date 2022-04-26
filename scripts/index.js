@@ -1,11 +1,11 @@
 let popupForm = document.querySelector('.popup__form');
 let popup = document.querySelector('.popup');
-let infoUserEdit = document.querySelector('.infoUser__edit');
-let popupClose = document.querySelector('.popup__close');
-let popupNameValue = document.querySelector('.popup__field_name');
-let popupJobValue = document.querySelector('.popup__field_job')
-let popupName = document.querySelector('.infoUser__name');
-let popupJod = document.querySelector('.infoUser__job');
+let infoUserEdit = document.querySelector('.info-user__edit-button');
+let popupClose = document.querySelector('.popup__close-button');
+let popupNameValue = document.querySelector('.popup__field_input-name');
+let popupJobValue = document.querySelector('.popup__field_input-job')
+let popupName = document.querySelector('.info-user__name');
+let popupJod = document.querySelector('.info-user__job');
 
 
 infoUserEdit.addEventListener('click', open);

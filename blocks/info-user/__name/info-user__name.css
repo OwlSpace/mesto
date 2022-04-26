@@ -1,4 +1,4 @@
-.infoUser__name {
+.info-user__name {
     margin: 0;
     width: 294px;
     font-style: normal;
@@ -11,7 +11,7 @@
 }
 
 @media screen and (max-width: 600px) {
-    .infoUser__name {
+    .info-user__name {
         width: 189px;
         font-size: 27px;
         line-height: 33px;

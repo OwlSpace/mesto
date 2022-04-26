@@ -1,4 +1,4 @@
-.infoUser__job{
+.info-user__job{
     margin: 0;
     font-style: normal;
     font-weight: 400;
@@ -10,13 +10,13 @@
 }
 
 @media screen and (max-width: 900px) {
-    .infoUser__job {
+    .info-user__job {
         text-align: center;
     }
 }
 
 @media screen and (max-width: 600px) {
-    .infoUser__job {
+    .info-user__job {
         width: 282px;
         font-size: 14px;
         line-height: 17px;

@@ -1,4 +1,4 @@
-.infoUser__edit {
+.info-user__edit-button {
     margin-top: 15px;
     background-image: url("../../../images/EditButton.svg");
     background-color: transparent;
@@ -11,13 +11,13 @@
     transition: opacity .2s ease-in;
 }
 
-.infoUser__edit:hover {
+.info-user__edit-button:hover {
     opacity: 0.6;
     cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {
-    .infoUser__edit {
+    .info-user__edit-button {
         width: 18px;
         height: 18px;
         padding: 0;
