@@ -25,10 +25,9 @@
 
     <section class="elements">
         <ul class="elements__list">
-
             <template class="template-element">
                 <li class="element">
-                    <img src="" alt="я" class="element__image">
+                    <img src="" alt="" class="element__image">
                     <div class="element__container">
                         <h2 class="element__title">
                             Карачаево
@@ -37,71 +36,10 @@
                     </div>
                 </li>
             </template>
-
-<!--            <li class="element">-->
-<!--                <img src="images/karahaevo_herkeccia.png" alt="Карачаево-Черкессия" class="element__image">-->
-<!--                <div class="element__container">-->
-<!--                    <h2 class="element__title">-->
-<!--                        Карачаево-Черкессия-->
-<!--                    </h2>-->
-<!--                    <button type="button" class="element__like-button"></button>-->
-<!--                </div>-->
-<!--            </li>-->
-
-<!--            <li class="element">-->
-<!--                <img src="images/elbryse.png" alt="эльбрус" class="element__image">-->
-<!--                <div class="element__container">-->
-<!--                    <h2 class="element__title">-->
-<!--                        Гора Эльбрус-->
-<!--                    </h2>-->
-<!--                    <button type="button" class="element__like-button"></button>-->
-<!--                </div>-->
-<!--            </li>-->
-
-<!--            <li class="element">-->
-<!--                <img src="images/dombai.png" alt="домбай" class="element__image">-->
-<!--                <div class="element__container">-->
-<!--                    <h2 class="element__title">-->
-<!--                        Домбай-->
-<!--                    </h2>-->
-<!--                    <button type="button" class="element__like-button"></button>-->
-<!--                </div>-->
-<!--            </li>-->
-
-<!--            <li class="element">-->
-<!--                <img src="images/cape_Flotsky.jpg" alt="Мыс Флотский" class="element__image">-->
-<!--                <div class="element__container">-->
-<!--                    <h2 class="element__title">-->
-<!--                        Мыс Флотский-->
-<!--                    </h2>-->
-<!--                    <button type="button" class="element__like-button"></button>-->
-<!--                </div>-->
-<!--            </li>-->
-
-<!--            <li class="element">-->
-<!--                <img src="images/orekhovo.jpg" alt="орехово" class="element__image">-->
-<!--                <div class="element__container">-->
-<!--                    <h2 class="element__title">-->
-<!--                        Орехово-->
-<!--                    </h2>-->
-<!--                    <button type="button" class="element__like-button"></button>-->
-<!--                </div>-->
-<!--            </li>-->
-
-<!--            <li class="element">-->
-<!--                <img src="images/rieserferner-Ahrn.jpg" alt="hизерфернер-Арн" class="element__image">-->
-<!--                <div class="element__container">-->
-<!--                    <h2 class="element__title">-->
-<!--                        Ризерфернер-Арн-->
-<!--                    </h2>-->
-<!--                    <button type="button" class="element__like-button"></button>-->
-<!--                </div>-->
-<!--            </li>-->
-
         </ul>
     </section>
 
-    <div class="popup">
+    <div class="popup-profile">
         <form class="popup__form">
             <fieldset class="popup__section">
                 <p class="popup__title">Редактировать профиль</p>
@@ -110,6 +48,23 @@
                 </label>
                 <label class="popup__fields">
                     <input type="text" class="popup__field popup__field_input-job">
+                </label>
+                <button type="submit" class="popup__save-button">Сохранить</button>
+            </fieldset>
+            <button type="button" class="popup__close-button"></button>
+        </form>
+        <div class="popup__overlay"></div>
+    </div>
+
+    <div class="popup-card">
+        <form class="popup__form">
+            <fieldset class="popup__section">
+                <p class="popup__title">Новое место</p>
+                <label class="popup__fields">
+                    <input type="text" class="popup__field " placeholder="Название">
+                </label>
+                <label class="popup__fields">
+                    <input type="text" class="popup__field " placeholder="Ссылка на картинку">
                 </label>
                 <button type="submit" class="popup__save-button">Сохранить</button>
             </fieldset>

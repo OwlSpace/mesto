@@ -1,4 +1,4 @@
-.popup {
+.popup-profile, .popup-card{
     display: none;
     margin: 0;
     position: relative;
