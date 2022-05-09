@@ -1,4 +1,3 @@
-
 const infoUserEdit = document.querySelector('.info-user__edit-button');
 const popupName = document.querySelector('.info-user__name');
 const popupJod = document.querySelector('.info-user__job');
@@ -69,6 +68,9 @@ function pictor(item) {
 
     newCard.querySelector('.element__delete-button')
         .addEventListener('click', (event) => event.target.parentElement.remove());
+
+    newCard.querySelector('.element__like-button')
+        .addEventListener('click', (event) => event.target.classList.toggle('element__like-button_active'));
 
     return newCard;
 }
