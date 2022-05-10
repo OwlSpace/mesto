@@ -17,7 +17,7 @@ const popupCardForm = popupCard.querySelector('.popup__form');
 const popupCardName = popupCard.querySelector('.popup__field_input-name');
 const popupCardLink = popupCard.querySelector('.popup__field_input-link');
 
-const popupOpenCard = document.querySelector('.popup__open-card');
+const popupOpenCard = document.querySelector('.popup-open-card');
 const closeCardImage = popupOpenCard.querySelector('.popup__close-button');
 
 
