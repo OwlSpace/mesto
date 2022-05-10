@@ -21,7 +21,6 @@ const popupOpenCard = document.querySelector('.popup__open-card');
 const closeCardImage = popupOpenCard.querySelector('.popup__close-button');
 
 
-
 const initialCards = [
     {
         name: 'Архыз',
@@ -55,7 +54,7 @@ popupProfileForm.addEventListener('submit', formSubmitHandler);
 
 popupCardOpen.addEventListener('click', () => open(popupCard));
 popupCardClose.addEventListener('click', () => close(popupCard));
-popupCardForm.addEventListener('submit', formSubmitCard);
+popupCardForm.addEventListener('submit', formAppendCardHandler);
 
 closeCardImage.addEventListener('click', () => close(popupOpenCard))
 
@@ -64,10 +63,10 @@ popupNameValue.value = popupName.textContent;
 popupJobValue.value = popupJod.textContent;
 
 initialCards.forEach((item) => {
-    listCards.append(pictor(item));
+    listCards.append(buildCard(item));
 });
 
-function pictor(item) {
+function buildCard(item) {
     const newCard = templateElement.cloneNode(true);
     newCard.querySelector('.element__image').src = item.link;
     newCard.querySelector('.element__image').alt = item.name;
@@ -83,7 +82,6 @@ function pictor(item) {
         .addEventListener('click', (evt) => {
             popupOpenCard.querySelector('.open-card-viewing__image').src = evt.target.currentSrc;
             popupOpenCard.querySelector('.open-card-viewing__subtitle').textContent = evt.target.alt;
-            // console.log(evt)
             open(popupOpenCard);
         });
 
@@ -108,13 +106,13 @@ function formSubmitHandler(evt) {
     close(popupProfile);
 }
 
-function formSubmitCard(evt) {
+function formAppendCardHandler(evt) {
     evt.preventDefault();
     initialCards.unshift({
         name: popupCardName.value,
         link: popupCardLink.value
     });
-    listCards.prepend(pictor(initialCards[0]));
+    listCards.prepend(buildCard(initialCards[0]));
     close(popupCard);
     popupCardName.value = '';
     popupCardLink.value = '';
