@@ -17,6 +17,11 @@ const popupCardForm = popupCard.querySelector('.popup__form');
 const popupCardName = popupCard.querySelector('.popup__field_input-name');
 const popupCardLink = popupCard.querySelector('.popup__field_input-link');
 
+const popupOpenCard = document.querySelector('.popup__open-card');
+const closeCardImage = popupOpenCard.querySelector('.popup__close-button');
+
+
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -52,6 +57,8 @@ popupCardOpen.addEventListener('click', () => open(popupCard));
 popupCardClose.addEventListener('click', () => close(popupCard));
 popupCardForm.addEventListener('submit', formSubmitCard);
 
+closeCardImage.addEventListener('click', () => close(popupOpenCard))
+
 
 popupNameValue.value = popupName.textContent;
 popupJobValue.value = popupJod.textContent;
@@ -71,6 +78,14 @@ function pictor(item) {
 
     newCard.querySelector('.element__like-button')
         .addEventListener('click', (event) => event.target.classList.toggle('element__like-button_active'));
+
+    newCard.querySelector('.element__image')
+        .addEventListener('click', (evt) => {
+            popupOpenCard.querySelector('.open-card-viewing__image').src = evt.target.currentSrc;
+            popupOpenCard.querySelector('.open-card-viewing__subtitle').textContent = evt.target.alt;
+            // console.log(evt)
+            open(popupOpenCard);
+        });
 
     return newCard;
 }
@@ -101,4 +116,6 @@ function formSubmitCard(evt) {
     });
     listCards.prepend(pictor(initialCards[0]));
     close(popupCard);
+    popupCardName.value = '';
+    popupCardLink.value = '';
 }

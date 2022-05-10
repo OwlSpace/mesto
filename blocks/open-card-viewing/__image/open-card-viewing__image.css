@@ -1,0 +1,27 @@
+.open-card-viewing__image {
+    max-width: 816px;
+    min-width: 433px;
+    max-height: 540px;
+    margin: 0 auto 10px;
+}
+
+@media screen and (max-width: 900px) {
+    .open-card-viewing__image {
+        max-width: 550px;
+        max-height: 450px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .open-card-viewing__image {
+        max-width: 400px;
+        min-width: 239px;
+        height: 299px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .open-card-viewing__image {
+        max-width: 240px;
+    }
+}

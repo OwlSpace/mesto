@@ -1,0 +1,28 @@
+.open-card-viewing {
+    max-width: 816px;
+    max-height: 562px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+@media screen and (max-width: 900px) {
+    .open-card-viewing {
+        max-width: 560px;
+        max-height: 450px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .open-card-viewing {
+        max-width: 400px;
+        max-height: 299px;
+    }
+}
+@media screen and (max-width: 400px) {
+    .open-card-viewing {
+        max-width: 240px;
+    }
+}
