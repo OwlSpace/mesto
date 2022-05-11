@@ -2,3 +2,7 @@
     visibility: visible;
     opacity: 1;
 }
+
+.popup_opened-body-overflow {
+    overflow: hidden;
+}
