@@ -25,7 +25,7 @@ const cardClosePopupButton = cardOpenPopup.querySelector('.popup__close-button')
 profileEditPopupOpenButton.addEventListener('click', () => {
     open(profileEditPopup);
     profileEditPopupNameInput.value = userNameInput.textContent;
-    profileEditPopupJobInput.value = userJobInput.textContent
+    profileEditPopupJobInput.value = userJobInput.textContent;
 });
 
 profileEditPopupCloseButton.addEventListener('click', () => close(profileEditPopup));
