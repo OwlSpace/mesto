@@ -28,11 +28,19 @@ profileEditPopupOpenButton.addEventListener('click', () => {
     profileEditPopupJobInput.value = userJobInput.textContent;
 });
 
-profileEditPopupCloseButton.addEventListener('click', () => close(profileEditPopup));
+profileEditPopupCloseButton.addEventListener('click', () => {
+    close(profileEditPopup);
+    getInputList(popup);
+
+});
 
 profileEditPopupForm.addEventListener('submit', updateUserInfo);
 
-cardAddPopupOpenButton.addEventListener('click', () => open(cardAddPopup));
+cardAddPopupOpenButton.addEventListener('click', () => {
+    cardAddPopupNameInput.value = '';
+    cardAddPopupLinkInput.value = '';
+    open(cardAddPopup);
+});
 cardAddPopupCloseButton.addEventListener('click', () => close(cardAddPopup));
 cardAddPopupForm.addEventListener('submit', appendCardIntoTemplate);
 
@@ -44,6 +52,7 @@ initialCards.forEach((item) => {
 });
 
 function buildCard(item) {
+
     const newCard = templateElement.cloneNode(true);
     const newCardElementImage = newCard.querySelector('.element__image');
     newCardElementImage.src = item.link;
@@ -65,28 +74,34 @@ function buildCard(item) {
     return newCard;
 }
 
-
 function open(popup) {
-    popup.classList.add('popup_opened');
 
-    // Страка ниже нужна для отключения ВЕРТИКАЛЬНОГО скрола страницы при открытии любого из popup
+    popup.classList.add('popup_opened');
     body.classList.add('popup_opened-body-overflow');
+    document.addEventListener('keyup', () => trackTheClickEsc(event, popup));
+    document.addEventListener('mousedown', () => trackTheClickOverlay(event, popup));
+
 }
 
 function close(popup) {
+
     popup.classList.remove('popup_opened');
     body.classList.remove('popup_opened-body-overflow');
+    document.removeEventListener('keyup', () => trackTheClickEsc(event, popup));
+    document.removeEventListener('mousedown', () => trackTheClickOverlay(event, popup))
+
 }
 
-function updateUserInfo(evt) {
-    evt.preventDefault();
+function updateUserInfo() {
+
     userNameInput.textContent = profileEditPopupNameInput.value;
     userJobInput.textContent = profileEditPopupJobInput.value;
     close(profileEditPopup);
+
 }
 
-function appendCardIntoTemplate(evt) {
-    evt.preventDefault();
+function appendCardIntoTemplate() {
+
     cardsList.prepend(buildCard(
         {
             name: cardAddPopupNameInput.value,
@@ -96,4 +111,21 @@ function appendCardIntoTemplate(evt) {
     close(cardAddPopup);
     cardAddPopupNameInput.value = '';
     cardAddPopupLinkInput.value = '';
+
+}
+
+function trackTheClickOverlay(event, popup) {
+
+    if (event.target.classList[0] === 'popup') {
+        close(popup);
+    }
+
+}
+
+function trackTheClickEsc(event, popup) {
+
+    if (event.key === 'Escape') {
+        close(popup);
+    }
+
 }

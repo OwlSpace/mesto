@@ -1,7 +1,9 @@
 .popup__fields {
     display: flex;
     flex-direction: column;
+    position: relative;
     width: 358px;
+    height: 44px;
     padding: 0;
     font-style: normal;
     font-weight: 400;

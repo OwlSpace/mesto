@@ -28,6 +28,7 @@
 
 @import url('../blocks/popup/popup.css');
 @import url('../blocks/popup/_overlay-open-card/popup_overlay-open-card.css');
+@import url('../blocks/popup/__error/popup__error.css');
 @import url('../blocks/popup/_opened/popup_opened.css');
 @import url('../blocks/popup/__fields/popup__fields.css');
 @import url('../blocks/popup/__close-button/popup__close-button.css');

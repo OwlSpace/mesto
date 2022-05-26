@@ -11,3 +11,7 @@
 .popup__field:focus {
     outline: none;
 }
+
+.popup__error-user {
+    border-bottom-color: #FF0000;
+}
