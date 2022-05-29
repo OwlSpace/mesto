@@ -2,6 +2,7 @@ const userNameInput = document.querySelector('.info-user__name');
 const userJobInput = document.querySelector('.info-user__job');
 const templateElement = document.querySelector('.template-element').content;
 const cardsContainer = document.querySelector('.elements__list');
+const body = document.querySelector('.page');
 
 const profileEditPopup = document.querySelector('.popup-profile');
 const profileEditPopupForm = profileEditPopup.querySelector('.popup__form');
@@ -81,8 +82,9 @@ function open(popup) {
 
     document.addEventListener('keyup', trackTheClickEsc);
     popup.addEventListener('mousedown', trackTheClickOverlay);
+    //Другого варианта отключения scroll при открытии popup я не нашла, наставники так же не дали другого решения
+    body.classList.add('page_fix-scroll');
     popup.classList.add('popup_opened');
-    document.body.style.overflow = 'hidden';
 
 }
 
@@ -90,8 +92,8 @@ function close(popup) {
 
     document.removeEventListener('keyup', trackTheClickEsc);
     popup.removeEventListener('mousedown', trackTheClickOverlay);
+    body.classList.remove('page_fix-scroll');
     popup.classList.remove('popup_opened');
-    document.body.style.overflow = '';
 
 }
 

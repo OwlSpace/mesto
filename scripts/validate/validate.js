@@ -10,25 +10,25 @@ function enableValidation(settings) {
     const {formsPopup} = settings;
     const formList = Array.from(document.querySelectorAll(formsPopup));
 
-    formList.forEach((popup) => {
-        popup.addEventListener('submit', (event) => {
+    formList.forEach((form) => {
+        form.addEventListener('submit', (event) => {
             event.preventDefault();
         })
-        getInputList(popup, settings)
+        getInputList(form, settings)
     })
 
 }
 
-function getInputList(popup, settings) {
+function getInputList(form, settings) {
 
     const {inputsPopup, popupSaveButton} = settings;
 
-    const inputList = Array.from(popup.querySelectorAll(inputsPopup));
-    const saveButton = popup.querySelector(popupSaveButton);
+    const inputList = Array.from(form.querySelectorAll(inputsPopup));
+    const saveButton = form.querySelector(popupSaveButton);
 
     inputList.forEach((element) => {
         element.addEventListener('input', () =>  {
-            isValid(element, popup, settings);
+            isValid(element, form, settings);
             toggleButtonState(inputList, saveButton);
         });
     })
@@ -37,36 +37,36 @@ function getInputList(popup, settings) {
 
 function toggleButtonState(inputList, button) {
 
-    button.disabled = !!hasInvalidInput(inputList);
+    button.disabled = hasInvalidInput(inputList);
 
 }
 
-function isValid(element, popup, settings) {
+function isValid(element, form, settings) {
 
     if (!element.validity.valid) {
-        showInputError(element, popup, element.validationMessage, settings);
+        showInputError(element, form, element.validationMessage, settings);
     } else {
-        hideInputError(element, popup, settings);
+        hideInputError(element, form, settings);
     }
 
 }
 
-function showInputError(element, popup, errorMessage, settings) {
+function showInputError(element, form, errorMessage, settings) {
 
     const {errorClass} = settings;
-    const formError = popup.querySelector(`.${element.id}-error`);
+    const formError = form.querySelector(`.${element.id}-error`);
 
     element.classList.add(errorClass);
     formError.textContent = errorMessage;
 
 }
 
-function hideInputError(element, popup, settings) {
+function hideInputError(element, form, settings) {
 
     const {errorClass} = settings;
 
     element.classList.remove(errorClass);
-    const formError = popup.querySelector(`.${element.id}-error`);
+    const formError = form.querySelector(`.${element.id}-error`);
     formError.textContent = '';
 
 }
