@@ -1,8 +1,12 @@
+import {initialCards, selectorList, cardOpenPopup} from './constants/constants.js';
+import FormValidate from "./validate/validate.js";
+import Card from "./card/card.js";
+import {open, close} from "./utils/elementsInteractionUtils.js";
+
+
 const userNameInput = document.querySelector('.info-user__name');
 const userJobInput = document.querySelector('.info-user__job');
-const templateElement = document.querySelector('.template-element').content;
 const cardsContainer = document.querySelector('.elements__list');
-const body = document.querySelector('.page');
 
 const profileEditPopup = document.querySelector('.popup-profile');
 const profileEditPopupForm = profileEditPopup.querySelector('.popup__form');
@@ -19,7 +23,6 @@ const cardAddPopupCloseButton = cardAddPopup.querySelector('.popup__close-button
 const cardAddPopupNameInput = cardAddPopup.querySelector('.popup__field_input-name');
 const cardAddPopupLinkInput = cardAddPopup.querySelector('.popup__field_input-link');
 
-const cardOpenPopup = document.querySelector('.popup-open-card');
 const cardClosePopupButton = cardOpenPopup.querySelector('.popup__close-button');
 
 
@@ -47,57 +50,15 @@ cardClosePopupButton.addEventListener('click', () => close(cardOpenPopup))
 
 
 initialCards.forEach((item) => {
-    cardsContainer.append(buildCard(item));
+    // cardsContainer.append(buildCard(item));
+    const card = new Card(item, '.template-element', open);
+    cardsContainer.append(card.generate());
 });
 
-function buildCard(item) {
-
-    const newCard = templateElement.cloneNode(true);
-    const newCardElementImage = newCard.querySelector('.element__image');
-    const viewingImage = cardOpenPopup.querySelector('.open-card-viewing__image');
-    const viewingSubtitle = cardOpenPopup.querySelector('.open-card-viewing__subtitle');
-
-    newCardElementImage.src = item.link;
-    newCardElementImage.alt = item.name;
-    newCard.querySelector('.element__title').textContent = item.name;
-
-    newCard.querySelector('.element__delete-button').addEventListener('click', (event) => {
-        event.target.closest('.element').remove();
-    });
-
-    newCard.querySelector('.element__like-button')
-        .addEventListener('click', (event) => event.target.classList.toggle('element__like-button_active'));
-
-    newCardElementImage.addEventListener('click', (evt) => {
-        viewingImage.src = evt.target.currentSrc;
-        viewingImage.alt = evt.target.alt;
-        viewingSubtitle.textContent = evt.target.alt;
-        open(cardOpenPopup);
-    });
-
-    return newCard;
-}
-
-function open(popup) {
-
-    document.addEventListener('keyup', trackTheClickEsc);
-    popup.addEventListener('mousedown', trackTheClickOverlay);
-    //Другого варианта отключения scroll при открытии popup я не нашла, наставники так же не дали другого решения
-    body.classList.add('page_fix-scroll');
-    popup.classList.add('popup_opened');
-
-}
-
-function close(popup) {
-
-    document.removeEventListener('keyup', trackTheClickEsc);
-    popup.removeEventListener('mousedown', trackTheClickOverlay);
-    body.classList.remove('page_fix-scroll');
-    popup.classList.remove('popup_opened');
-
-}
 
 function updateUserInfo() {
+
+    event.preventDefault();
 
     userNameInput.textContent = profileEditPopupNameInput.value;
     userJobInput.textContent = profileEditPopupJobInput.value;
@@ -107,29 +68,19 @@ function updateUserInfo() {
 
 function appendCardIntoTemplate() {
 
-    cardsContainer.prepend(buildCard(
-        {
-            name: cardAddPopupNameInput.value,
-            link: cardAddPopupLinkInput.value
-        }
-    ));
+    event.preventDefault();
+
+    const card = new Card({
+        name: cardAddPopupNameInput.value,
+        link: cardAddPopupLinkInput.value
+    }, '.template-element', open)
+
+    cardsContainer.prepend(card.generate());
     close(cardAddPopup);
 
 }
 
-function trackTheClickOverlay(event) {
-
-    if (event.target === event.currentTarget) {
-        close(event.target);
-    }
-
-}
-
-function trackTheClickEsc(event) {
-
-    if (event.key === 'Escape') {
-        const openedPopup = document.querySelector('.popup_opened');
-        close(openedPopup);
-    }
-
-}
+Array.from(document.forms).forEach((formElement) => {
+    formElement = new FormValidate(selectorList, formElement);
+    formElement.enableValidation();
+});
