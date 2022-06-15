@@ -48,13 +48,13 @@ class FormValidate {
     }
 
 
-    _enableButton(button) {
-        button.disabled = false;
+    _enableButton() {
+        this._saveButton.disabled = false;
     }
 
 
-    disableButton(button) {
-        button.disabled = true;
+    disableButton() {
+        this._saveButton.disabled = true;
     }
 
 
@@ -64,9 +64,9 @@ class FormValidate {
             element.addEventListener('input', () =>  {
                 this._isValid(element);
                 if (this._hasInvalidInput(this._inputList)) {
-                    this.disableButton(this._saveButton);
+                    this.disableButton();
                 } else {
-                    this._enableButton(this._saveButton);
+                    this._enableButton();
                 }
             });
         })

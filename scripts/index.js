@@ -19,7 +19,6 @@ const profileEditPopupJobInput = profileEditPopup.querySelector('.popup__field_i
 const cardAddPopup = document.querySelector('.popup-card');
 const cardAddPopupForm = cardAddPopup.querySelector('.popup__form');
 const cardAddPopupOpenButton = document.querySelector('.profile__add-button');
-const cardAddPopupSaveButton = cardAddPopup.querySelector('.popup__disabled');
 const cardAddPopupCloseButton = cardAddPopup.querySelector('.popup__close-button');
 const cardAddPopupNameInput = cardAddPopup.querySelector('.popup__field_input-name');
 const cardAddPopupLinkInput = cardAddPopup.querySelector('.popup__field_input-link');
@@ -37,7 +36,7 @@ profileEditPopupForm.addEventListener('submit', () => updateUserInfo(event));
 
 cardAddPopupOpenButton.addEventListener('click', () => {
     cardAddPopupForm.reset();
-    forms[cardAddPopupForm.name].disableButton(cardAddPopupSaveButton);
+    forms[cardAddPopupForm.name].disableButton();
     open(cardAddPopup);
 });
 cardAddPopupCloseButton.addEventListener('click', () => close(cardAddPopup));
@@ -82,13 +81,17 @@ function appendCardIntoTemplate(event) {
 
 }
 
-function openProfilePopupWithDefaultValues(profileEditPopup){
+function openProfilePopupWithDefaultValues(profileEditPopup) {
+
     profileEditPopupNameInput.value = userNameInput.textContent;
     profileEditPopupJobInput.value = userJobInput.textContent;
     open(profileEditPopup);
+
 }
 
 Array.from(document.forms).forEach((formElement) => {
+
     forms[formElement.name] = new FormValidate(selectorList, formElement);
     forms[formElement.name].enableValidation();
+
 });
