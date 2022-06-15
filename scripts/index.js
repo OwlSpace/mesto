@@ -4,6 +4,7 @@ import Card from "./card/card.js";
 import {open, close} from "./utils/elementsInteractionUtils.js";
 
 
+const forms = {};
 const userNameInput = document.querySelector('.info-user__name');
 const userJobInput = document.querySelector('.info-user__job');
 const cardsContainer = document.querySelector('.elements__list');
@@ -26,37 +27,40 @@ const cardAddPopupLinkInput = cardAddPopup.querySelector('.popup__field_input-li
 const cardClosePopupButton = cardOpenPopup.querySelector('.popup__close-button');
 
 
-profileEditPopupOpenButton.addEventListener('click', () => {
-    profileEditPopupNameInput.value = userNameInput.textContent;
-    profileEditPopupJobInput.value = userJobInput.textContent;
-    open(profileEditPopup);
-});
+profileEditPopupOpenButton.addEventListener('click', () => openProfilePopupWithDefaultValues(profileEditPopup));
 
 profileEditPopupCloseButton.addEventListener('click', () => {
     close(profileEditPopup);
 });
 
-profileEditPopupForm.addEventListener('submit', updateUserInfo);
+profileEditPopupForm.addEventListener('submit', () => updateUserInfo(event));
 
 cardAddPopupOpenButton.addEventListener('click', () => {
     cardAddPopupForm.reset();
-    cardAddPopupSaveButton.disabled = true;
+    forms[cardAddPopupForm.name].disableButton(cardAddPopupSaveButton);
     open(cardAddPopup);
 });
 cardAddPopupCloseButton.addEventListener('click', () => close(cardAddPopup));
-cardAddPopupForm.addEventListener('submit', appendCardIntoTemplate);
+cardAddPopupForm.addEventListener('submit', () => appendCardIntoTemplate(event));
 
 cardClosePopupButton.addEventListener('click', () => close(cardOpenPopup))
 
 
 initialCards.forEach((item) => {
-    // cardsContainer.append(buildCard(item));
-    const card = new Card(item, '.template-element', open);
-    cardsContainer.append(card.generate());
+
+    cardsContainer.append(buildNewCard(item));
+
 });
 
+function buildNewCard(item) {
 
-function updateUserInfo() {
+    const card = new Card(item, '.template-element');
+    return card.generate();
+
+}
+
+
+function updateUserInfo(event) {
 
     event.preventDefault();
 
@@ -66,21 +70,25 @@ function updateUserInfo() {
 
 }
 
-function appendCardIntoTemplate() {
+function appendCardIntoTemplate(event) {
 
     event.preventDefault();
 
-    const card = new Card({
+    cardsContainer.prepend(buildNewCard({
         name: cardAddPopupNameInput.value,
         link: cardAddPopupLinkInput.value
-    }, '.template-element', open)
-
-    cardsContainer.prepend(card.generate());
+    }));
     close(cardAddPopup);
 
 }
 
+function openProfilePopupWithDefaultValues(profileEditPopup){
+    profileEditPopupNameInput.value = userNameInput.textContent;
+    profileEditPopupJobInput.value = userJobInput.textContent;
+    open(profileEditPopup);
+}
+
 Array.from(document.forms).forEach((formElement) => {
-    formElement = new FormValidate(selectorList, formElement);
-    formElement.enableValidation();
+    forms[formElement.name] = new FormValidate(selectorList, formElement);
+    forms[formElement.name].enableValidation();
 });

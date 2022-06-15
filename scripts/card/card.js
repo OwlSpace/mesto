@@ -23,6 +23,7 @@ export default class Card {
         this._elementTitle = this._element.querySelector('.element__title');
 
         this._elementImage.src = this._link;
+        this._elementImage.alt = this._name;
         this._elementTitle.textContent = this._name;
 
         this._setEventListeners();
@@ -56,6 +57,7 @@ export default class Card {
 
     _deleteCard() {
         this._element.remove();
+        this._element = null;
     }
 
     _openCard() {
