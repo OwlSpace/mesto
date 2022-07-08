@@ -73,6 +73,13 @@ class FormValidate {
 
     }
 
+    checkingTheFormForValidity() {
+        this._inputList.forEach(inputElement =>{
+            this._hideInputError(inputElement);
+        })
+
+    }
+
 }
 
 export default FormValidate;

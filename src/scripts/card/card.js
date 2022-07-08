@@ -1,16 +1,13 @@
-import {open} from "../utils/elementsInteractionUtils.js";
-
-
 export default class Card {
-    constructor(data, cardSelector) {
+    constructor(data, cardSelector, openPopupImage) {
         this._name = data.name;
         this._link = data.link;
         this._cardSelector = cardSelector;
-
+        this._openPopupImage = openPopupImage;
     }
 
     _getTeplateElement() {
-        return document.querySelector(this._cardSelector)
+        return document.querySelector(`.${this._cardSelector}`)
             .content
             .querySelector('.element')
             .cloneNode(true);
@@ -37,39 +34,25 @@ export default class Card {
 
 
         this._likeButton
-            .addEventListener('click', (event) => {
-                this._likeCard(event);
-            });
+            .addEventListener('click', this._likeCard);
 
         this._deleteButton
-            .addEventListener('click', () => {
-                this._deleteCard();
-            });
+            .addEventListener('click', this._deleteCard);
 
-        this._elementImage.addEventListener('click', () => {
-            this._openCard();
-        });
+        this._elementImage.addEventListener('click', this._handleOpenCard);
     }
 
-    _likeCard(event) {
-        event.target.classList.toggle('element__like-button_active');
+    _likeCard = () => {
+        this._likeButton.classList.toggle('element__like-button_active');
     }
 
-    _deleteCard() {
+    _deleteCard = () =>  {
         this._element.remove();
         this._element = null;
     }
 
-    _openCard() {
-        const cardOpenPopup = document.querySelector('.popup-open-card');
-        const viewingImage = cardOpenPopup.querySelector('.open-card-viewing__image');
-        const viewingSubtitle = cardOpenPopup.querySelector('.open-card-viewing__subtitle');
-
-        viewingImage.src = this._link;
-        viewingImage.alt = this._name;
-        viewingSubtitle.textContent = this._name;
-
-        open(cardOpenPopup);
+    _handleOpenCard = () =>  {
+        this._openPopupImage({name: this._name, link: this._link});
     }
 
 }
