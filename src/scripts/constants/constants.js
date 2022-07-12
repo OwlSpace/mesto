@@ -31,28 +31,6 @@ export const selectorList = {
     errorClass: 'popup__error-user'
 };
 
-export const body = document.querySelector('.page');
-
-export const cardOpenPopup = document.querySelector('.popup-open-card');
-
-export const configurationForm = {
-    selectorInput: 'popup__field',
-    buttonSelectorSubmit: 'popup__save-button',
-    selectorForm: 'popup__form'
-}
-export const configurationPopup = {
-    activModifier: 'popup_opened',
-    closeButtonSelector: 'popup__close-button'
-}
-
-export const cardsContainerSelector = 'elements__list';
-export const newPlacePopupSelector = 'popup-card';
-export const profilePopupSelector = 'popup-profile';
-export const imegePopupSelector = 'popup-open-card';
-export const newPlaceFormName = 'card-new';
-export const profileFormName = 'user-info';
-export const cardSelector = 'template-element';
-
 export const profileConfiguration = {
     titleSelector: 'info-user__name',
     jobSelector: 'info-user__job'
@@ -63,4 +41,26 @@ export const viewPopupConfiguration = {
     captionSelector: 'open-card-viewing__subtitle'
 }
 
+export const configurationForm = {
+    selectorInput: 'popup__field',
+    buttonSelectorSubmit: 'popup__save-button',
+    selectorForm: 'popup__form'
+}
 
+export const configurationPopup = {
+    activModifier: 'popup_opened',
+    closeButtonSelector: 'popup__close-button'
+}
+
+
+export const body = document.querySelector('.page');
+export const cardsContainerSelector = 'elements__list';
+export const newPlacePopupSelector = 'popup-card';
+export const profilePopupSelector = 'popup-profile';
+export const imegePopupSelector = 'popup-open-card';
+export const newPlaceFormName = 'card-new';
+export const profileFormName = 'user-info';
+export const cardSelector = 'template-element';
+export const forms = {};
+export const profileEditPopupOpenButton = document.querySelector('.info-user__edit-button');
+export const cardAddPopupOpenButton = document.querySelector('.profile__add-button');

@@ -1,4 +1,4 @@
-import Popup from "../popup/popup.js";
+import Popup from "./popup.js";
 export default class PopupWithForm extends Popup {
     constructor(selecortPopup, formName, configPopup, {selectorInput, buttonSelectorSubmit, selectorForm}, submitCallBack, getCallBack = null) {
         super(selecortPopup, configPopup);
@@ -7,7 +7,6 @@ export default class PopupWithForm extends Popup {
         this._selectorInput = selectorInput;
         this._buttonSelectorSubmit = buttonSelectorSubmit;
         this._getCallBack = getCallBack;
-        this._selectorForm = selectorForm;
         this._formElement = document.forms[this._formName];
         this._listInput = Array.from(this._formElement.querySelectorAll(`.${this._selectorInput}`));
         this._saveButton = this._formElement.querySelector(`.${this._buttonSelectorSubmit}`);
@@ -26,10 +25,7 @@ export default class PopupWithForm extends Popup {
     _setInputValues(values) {
 
         this._listInput.forEach((inputElement) => {
-            console.log(inputElement.id.slice(6));
-            console.dir(values)
             inputElement.value = values[inputElement.id.slice(6)];
-            console.log(inputElement.value);
         })
 
     }
@@ -52,7 +48,6 @@ export default class PopupWithForm extends Popup {
     openPopup() {
 
         if (this._getCallBack) {
-            console.log('yes')
             this._setInputValues(this._getCallBack());
         } else {
             this._formElement.reset();

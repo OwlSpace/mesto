@@ -1,4 +1,4 @@
-# Проект: Место - [Посмотреть](https://owlspace.github.io/mesto/index.html)
+# Проект: Место - [Посмотреть](https://owlspace.github.io/mesto/src/index.html)
 
 Mesto - интерактивная страница, где можно добавлять фотографии, удалять их и ставить лайки.
 
