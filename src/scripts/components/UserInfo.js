@@ -1,9 +1,7 @@
 export default class UserInfo {
-    constructor({titleSelector, jobSelector}) {
-        this._titleSelector = titleSelector;
-        this._jobSelector = jobSelector;
-        this._titleElement = document.querySelector(`.${this._titleSelector}`);
-        this._jobElement = document.querySelector(`.${this._jobSelector}`);
+    constructor({titleContainer, jobContainer}) {
+        this._titleElement = titleContainer;
+        this._jobElement = jobContainer;
     }
 
     setUserInfo = (data) => {

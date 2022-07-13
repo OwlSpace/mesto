@@ -4,66 +4,68 @@ import {
     selectorList,
     configurationForm,
     configurationPopup,
-    cardsContainerSelector,
-    newPlacePopupSelector,
-    profilePopupSelector,
-    imegePopupSelector,
+    cardsContainer,
+    newPlacePopupContainer,
+    profilPopupContainer,
+    imagePopupContainer,
     newPlaceFormName,
     profileFormName,
     profileConfiguration,
-    cardSelector,
+    cardContainer,
     viewPopupConfiguration,
     forms,
     profileEditPopupOpenButton,
     cardAddPopupOpenButton
 } from '../scripts/constants/constants.js';
-import FormValidate from "../scripts/components/validate.js";
-import Card from "../scripts/components/card.js";
-import Section from "../scripts/components/section.js";
-import PopupWithForm from "../scripts/components/popupWithForm.js";
-import PopupWithImage from "../scripts/components/popupWithImage.js";
-import UserInfo from "../scripts/components/userInfo.js";
+import FormValidate from "../scripts/components/Validate.js";
+import Card from "../scripts/components/Card.js";
+import Section from "../scripts/components/Section.js";
+import PopupWithForm from "../scripts/components/PopupWithForm.js";
+import PopupWithImage from "../scripts/components/PopupWithImage.js";
+import UserInfo from "../scripts/components/UserInfo.js";
 
 
 
-const viewPopup = new PopupWithImage(imegePopupSelector, configurationPopup, viewPopupConfiguration);
-viewPopup.setEventListeners();
+
+const cardPopup = new PopupWithImage(imagePopupContainer, configurationPopup, viewPopupConfiguration);
+cardPopup.setEventListeners();
 
 
 function buildNewCard(item) {
 
-    const card = new Card(item, cardSelector, viewPopup.openPopup);
+    const card = new Card(item, cardContainer, cardPopup.openPopup);
     return card.generate();
 
 }
 
 
-const cardsContainer = new Section({
+const newCardsContainer = new Section({
     items: initialCards.reverse(),
     renderer: buildNewCard
-}, cardsContainerSelector);
-cardsContainer.rendererAll();
+}, cardsContainer);
+newCardsContainer.rendererAll();
 
 
 const handleCardSubmit = (data) => {
-    cardsContainer.addItem(data);
+    newCardsContainer.addItem(data);
 
 }
 
 
 const newPlacePopup = new PopupWithForm(
-    newPlacePopupSelector,
+    newPlacePopupContainer,
     newPlaceFormName,
     configurationPopup,
     configurationForm,
-    handleCardSubmit);
+    handleCardSubmit
+);
 newPlacePopup.setEventListeners();
-
 
 const user = new UserInfo(profileConfiguration);
 
 
 const appendCardIntoTemplate = () => {
+    forms[newPlaceFormName].disableButton();
     newPlacePopup.openPopup();
 }
 
@@ -72,9 +74,6 @@ Array.from(document.forms).forEach((formElement) => {
 
     forms[formElement.name] = new FormValidate(selectorList, formElement);
     forms[formElement.name].enableValidation();
-    if (formElement.name === 'card-new') {
-        forms[formElement.name].disableButton();
-    }
 
 });
 
@@ -85,9 +84,8 @@ function updateUserInfo(dataProfile) {
 
 }
 
-
 const profilePopup = new PopupWithForm(
-    profilePopupSelector,
+    profilPopupContainer,
     profileFormName,
     configurationPopup,
     configurationForm,

@@ -1,9 +1,6 @@
-import {body} from "../constants/constants.js";
-
 export default class Popup {
-    constructor(selecortPopup, {activModifier, closeButtonSelector}) {
-        this._selectorPopup = selecortPopup;
-        this._popup = document.querySelector(`.${this._selectorPopup}`);
+    constructor(containerPopup, {activModifier, closeButtonSelector}) {
+        this._popup = containerPopup;
         this._activModifier = activModifier;
         this._closeButtonPopup = closeButtonSelector;
     }
@@ -11,8 +8,6 @@ export default class Popup {
     openPopup() {
 
         document.addEventListener('keyup', this._handleEscClose);
-        //Отключения scroll при открытии popup
-        body.classList.add('page_fix-scroll');
         this._popup.classList.add(this._activModifier);
 
     }
@@ -20,7 +15,6 @@ export default class Popup {
     closePopup() {
 
         document.removeEventListener('keyup', this._handleEscClose);
-        body.classList.remove('page_fix-scroll');
         this._popup.classList.remove(this._activModifier);
 
     }

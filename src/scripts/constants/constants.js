@@ -1,3 +1,10 @@
+const titleContainer = document.querySelector('.info-user__name');
+const jobContainer = document.querySelector('.info-user__job');
+const cardsContainerSelector = 'elements__list';
+const newPlacePopupSelector = 'popup-card';
+const profilePopupSelector = 'popup-profile';
+const imagePopupSelector = 'popup-open-card';
+
 export const initialCards = [
     {
         name: 'Архыз',
@@ -31,9 +38,10 @@ export const selectorList = {
     errorClass: 'popup__error-user'
 };
 
+
 export const profileConfiguration = {
-    titleSelector: 'info-user__name',
-    jobSelector: 'info-user__job'
+    titleContainer: titleContainer,
+    jobContainer: jobContainer
 }
 
 export const viewPopupConfiguration = {
@@ -53,14 +61,14 @@ export const configurationPopup = {
 }
 
 
-export const body = document.querySelector('.page');
-export const cardsContainerSelector = 'elements__list';
-export const newPlacePopupSelector = 'popup-card';
-export const profilePopupSelector = 'popup-profile';
-export const imegePopupSelector = 'popup-open-card';
+export const cardsContainer = document.querySelector(`.${cardsContainerSelector}`);
+export const newPlacePopupContainer = document.querySelector(`.${newPlacePopupSelector}`);
+export const profilPopupContainer = document.querySelector(`.${profilePopupSelector}`);
+export const imagePopupContainer = document.querySelector(`.${imagePopupSelector}`)
 export const newPlaceFormName = 'card-new';
 export const profileFormName = 'user-info';
 export const cardSelector = 'template-element';
+export const cardContainer = document.querySelector(`.${cardSelector}`);
 export const forms = {};
 export const profileEditPopupOpenButton = document.querySelector('.info-user__edit-button');
 export const cardAddPopupOpenButton = document.querySelector('.profile__add-button');
