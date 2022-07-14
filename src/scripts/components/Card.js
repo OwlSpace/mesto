@@ -1,13 +1,13 @@
 export default class Card {
-    constructor(data, cardContainer, openPopupImage) {
+    constructor(data, templateSelector, openPopupImage) {
         this._name = data.name;
         this._link = data.link;
-        this._cardContainer = cardContainer;
+        this._templateSelector = templateSelector;
         this._openPopupImage = openPopupImage;
     }
 
     _getTeplateElement() {
-        return this._cardContainer
+        return document.querySelector(this._templateSelector)
             .content
             .querySelector('.element')
             .cloneNode(true);

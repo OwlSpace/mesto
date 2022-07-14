@@ -4,20 +4,20 @@ import {
     selectorList,
     configurationForm,
     configurationPopup,
-    cardsContainer,
-    newPlacePopupContainer,
-    profilPopupContainer,
-    imagePopupContainer,
     newPlaceFormName,
     profileFormName,
-    profileConfiguration,
-    cardContainer,
+    profileConfigurationSelectors,
     viewPopupConfiguration,
     forms,
     profileEditPopupOpenButton,
-    cardAddPopupOpenButton
+    cardAddPopupOpenButton,
+    templateSelector,
+    profilePopupSelector,
+    imagePopupSelector,
+    newPlacePopupSelector,
+    cardsContainerSelector
 } from '../scripts/constants/constants.js';
-import FormValidate from "../scripts/components/Validate.js";
+import FormValidate from "../scripts/components/FormValidate.js";
 import Card from "../scripts/components/Card.js";
 import Section from "../scripts/components/Section.js";
 import PopupWithForm from "../scripts/components/PopupWithForm.js";
@@ -27,13 +27,13 @@ import UserInfo from "../scripts/components/UserInfo.js";
 
 
 
-const cardPopup = new PopupWithImage(imagePopupContainer, configurationPopup, viewPopupConfiguration);
+const cardPopup = new PopupWithImage(imagePopupSelector, configurationPopup, viewPopupConfiguration);
 cardPopup.setEventListeners();
 
 
 function buildNewCard(item) {
 
-    const card = new Card(item, cardContainer, cardPopup.openPopup);
+    const card = new Card(item, templateSelector, cardPopup.openPopup);
     return card.generate();
 
 }
@@ -42,7 +42,7 @@ function buildNewCard(item) {
 const newCardsContainer = new Section({
     items: initialCards.reverse(),
     renderer: buildNewCard
-}, cardsContainer);
+}, cardsContainerSelector);
 newCardsContainer.rendererAll();
 
 
@@ -53,7 +53,7 @@ const handleCardSubmit = (data) => {
 
 
 const newPlacePopup = new PopupWithForm(
-    newPlacePopupContainer,
+    newPlacePopupSelector,
     newPlaceFormName,
     configurationPopup,
     configurationForm,
@@ -61,7 +61,7 @@ const newPlacePopup = new PopupWithForm(
 );
 newPlacePopup.setEventListeners();
 
-const user = new UserInfo(profileConfiguration);
+const user = new UserInfo(profileConfigurationSelectors);
 
 
 const appendCardIntoTemplate = () => {
@@ -85,7 +85,7 @@ function updateUserInfo(dataProfile) {
 }
 
 const profilePopup = new PopupWithForm(
-    profilPopupContainer,
+    profilePopupSelector,
     profileFormName,
     configurationPopup,
     configurationForm,

@@ -1,15 +1,15 @@
 import Popup from "./Popup.js";
 export default class PopupWithForm extends Popup {
-    constructor(containerPopup, formName, configPopup, {selectorInput, buttonSelectorSubmit, selectorForm}, submitCallBack, getCallBack = null) {
-        super(containerPopup, configPopup);
+    constructor(popupSelector, formName, configPopup, {selectorInput, buttonSelectorSubmit}, submitCallBack, getCallBack = null) {
+        super(popupSelector, configPopup);
         this._formName = formName;
         this._submitCallBack = submitCallBack;
         this._selectorInput = selectorInput;
         this._buttonSelectorSubmit = buttonSelectorSubmit;
         this._getCallBack = getCallBack;
         this._formElement = document.forms[this._formName];
-        this._listInput = Array.from(this._formElement.querySelectorAll(`.${this._selectorInput}`));
-        this._saveButton = this._formElement.querySelector(`.${this._buttonSelectorSubmit}`);
+        this._listInput = Array.from(this._formElement.querySelectorAll(this._selectorInput));
+        this._saveButton = this._formElement.querySelector(this._buttonSelectorSubmit);
     }
 
     _getInputValues() {
@@ -46,7 +46,6 @@ export default class PopupWithForm extends Popup {
     }
 
     openPopup() {
-
         if (this._getCallBack) {
             this._setInputValues(this._getCallBack());
         } else {
