@@ -12,7 +12,7 @@
 <main>
 
     <section class="profile">
-        <img src="images/avatar.png" alt="фото_пользователя" class="profile__avatar">
+        <img src="images/dombai.png" alt="фото_пользователя" class="profile__avatar">
 
         <div class="info-user">
             <h1 class="info-user__name">Жак-Ив Кусто</h1>
@@ -77,6 +77,31 @@
         </div>
     </div>
 
+    <div class="popup popup-approval">
+        <form name="approval" class="popup__form">
+            <fieldset class="popup__section">
+                <p class="popup__title">Вы уверены?</p>
+                <button type="submit" class="popup__save-button popup__save-button_confirmation">Да</button>
+            </fieldset>
+            <button type="button" class="popup__close-button"></button>
+        </form>
+    </div>
+
+    <div class="popup popup-update-avatar">
+        <form name="update-avatar" class="popup__form">
+            <fieldset class="popup__section">
+                <p class="popup__title">Обновить аватар</p>
+                <label class="popup__fields">
+                    <input id="input-url" type="url" class="popup__field popup__field_input-link"
+                           placeholder="Ссылка на картинку" required>
+                    <span class="input-url-error popup__error"></span>
+                </label>
+                <button type="submit" class="popup__save-button">Сохранить</button>
+            </fieldset>
+            <button type="button" class="popup__close-button"></button>
+        </form>
+    </div>
+
 </main>
 
 <footer class="footer">
@@ -89,7 +114,11 @@
         <button type="button" class="element__delete-button"></button>
         <div class="element__container">
             <h2 class="element__title"></h2>
-            <button type="button" class="element__like-button"></button>
+            <div class="element__container-like">
+                <button type="button" class="element__like-button"></button>
+                <span class="element__like-count"></span>
+            </div>
+
         </div>
     </li>
 </template>

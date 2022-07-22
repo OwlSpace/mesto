@@ -10,6 +10,7 @@
     background-position: 50%;
     background-size: contain;
     border: 0;
+    display: none;
 }
 
 .element__delete-button:hover {

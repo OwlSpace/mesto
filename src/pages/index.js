@@ -1,55 +1,79 @@
 import './index.css';
 import {
-    initialCards,
+    profileEditPopupOpenButton,
+    cardAddPopupOpenButton,
+    avatarUpdateOpenButton,
     selectorList,
     configurationForm,
     configurationPopup,
     newPlaceFormName,
     profileFormName,
-    profileConfigurationSelectors,
+    user,
     viewPopupConfiguration,
     forms,
-    profileEditPopupOpenButton,
-    cardAddPopupOpenButton,
     templateSelector,
     profilePopupSelector,
     imagePopupSelector,
     newPlacePopupSelector,
-    cardsContainerSelector
+    cardsContainerSelector,
+    avatarPopupSelector,
+    avatarFormName,
+    buttonCaption,
+    approvalPopupSelector,
+    approvalFormName,
+    confirmDeleteButtonCaption
 } from '../scripts/constants/constants.js';
 import FormValidate from "../scripts/components/FormValidate.js";
 import Card from "../scripts/components/Card.js";
 import Section from "../scripts/components/Section.js";
 import PopupWithForm from "../scripts/components/PopupWithForm.js";
 import PopupWithImage from "../scripts/components/PopupWithImage.js";
-import UserInfo from "../scripts/components/UserInfo.js";
+import PopupConfirmation from "../scripts/components/PopupConfirmation.js";
+import {
+    deleteCardHandler,
+    cardLikeHandler,
+    handleCardSubmit,
+    updateUserInfo,
+    updateAvatarUser,
+    promisAll
+} from '../scripts/utils/utils.js'
 
-
+promisAll();
 
 
 const cardPopup = new PopupWithImage(imagePopupSelector, configurationPopup, viewPopupConfiguration);
 cardPopup.setEventListeners();
 
+const confirmationOfDeletion = new PopupConfirmation(
+    approvalPopupSelector,
+    approvalFormName,
+    configurationPopup,
+    deleteCardHandler,
+    confirmDeleteButtonCaption
+)
+confirmationOfDeletion.setEventListeners();
+
+
+function handelDeleteConfirm(cardId, deleteCardsCallback) {
+    confirmationOfDeletion.openPopup(cardId, deleteCardsCallback);
+
+}
+
 
 function buildNewCard(item) {
 
-    const card = new Card(item, templateSelector, cardPopup.openPopup);
+    const card = new Card(item, user.getUserId(), templateSelector,
+        {
+            openPopupImageHandler: cardPopup.openPopup,
+            handelDeleteConfirm,
+            cardLikeHandler
+        });
     return card.generate();
 
 }
 
 
-const newCardsContainer = new Section({
-    items: initialCards.reverse(),
-    renderer: buildNewCard
-}, cardsContainerSelector);
-newCardsContainer.rendererAll();
-
-
-const handleCardSubmit = (data) => {
-    newCardsContainer.addItem(data);
-
-}
+export const newCardsContainer = new Section({renderer: buildNewCard}, cardsContainerSelector);
 
 
 const newPlacePopup = new PopupWithForm(
@@ -57,11 +81,10 @@ const newPlacePopup = new PopupWithForm(
     newPlaceFormName,
     configurationPopup,
     configurationForm,
-    handleCardSubmit
+    handleCardSubmit,
+    buttonCaption
 );
 newPlacePopup.setEventListeners();
-
-const user = new UserInfo(profileConfigurationSelectors);
 
 
 const appendCardIntoTemplate = () => {
@@ -78,11 +101,6 @@ Array.from(document.forms).forEach((formElement) => {
 });
 
 
-function updateUserInfo(dataProfile) {
-
-    user.setUserInfo(dataProfile);
-
-}
 
 const profilePopup = new PopupWithForm(
     profilePopupSelector,
@@ -90,8 +108,19 @@ const profilePopup = new PopupWithForm(
     configurationPopup,
     configurationForm,
     updateUserInfo,
+    buttonCaption,
     user.getUserInfo);
 profilePopup.setEventListeners();
+
+const avatar = new PopupWithForm(
+    avatarPopupSelector,
+    avatarFormName,
+    configurationPopup,
+    configurationForm,
+    updateAvatarUser,
+    buttonCaption
+);
+avatar.setEventListeners();
 
 
 const handleProfilePopup = () => {
@@ -99,5 +128,13 @@ const handleProfilePopup = () => {
 }
 
 
+const updateAvatar = () => {
+    forms['update-avatar'].disableButton();
+    avatar.openPopup();
+}
+
+
 profileEditPopupOpenButton.addEventListener('click', handleProfilePopup);
 cardAddPopupOpenButton.addEventListener('click', appendCardIntoTemplate);
+avatarUpdateOpenButton.addEventListener('click', updateAvatar)
+

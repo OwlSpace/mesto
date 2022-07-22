@@ -1,15 +1,24 @@
 import Popup from "./Popup.js";
+
 export default class PopupWithForm extends Popup {
-    constructor(popupSelector, formName, configPopup, {selectorInput, buttonSelectorSubmit}, submitCallBack, getCallBack = null) {
+    constructor(popupSelector,
+                formName,
+                configPopup,
+                {selectorInput, buttonSelectorSubmit},
+                handleCardSubmit,
+                {normalCaption, activeCaption},
+                getCallBack = null) {
         super(popupSelector, configPopup);
         this._formName = formName;
-        this._submitCallBack = submitCallBack;
+        this._submitCallBack = handleCardSubmit;
         this._selectorInput = selectorInput;
         this._buttonSelectorSubmit = buttonSelectorSubmit;
         this._getCallBack = getCallBack;
         this._formElement = document.forms[this._formName];
         this._listInput = Array.from(this._formElement.querySelectorAll(this._selectorInput));
         this._saveButton = this._formElement.querySelector(this._buttonSelectorSubmit);
+        this._normalCaption = normalCaption;
+        this._activeCaption = activeCaption;
     }
 
     _getInputValues() {
@@ -30,11 +39,14 @@ export default class PopupWithForm extends Popup {
 
     }
 
+    toggleButtonCaption = (isSavind) => {
+        this._saveButton.textContent = isSavind ? this._activeCaption : this._normalCaption;
+    }
+
     _handleSubmit = (event) => {
 
         event.preventDefault();
-        this._submitCallBack(this._getInputValues());
-        this.closePopup();
+        this._submitCallBack(this._getInputValues(), this.toggleButtonCaption, this.closePopup);
 
     }
 
@@ -44,6 +56,7 @@ export default class PopupWithForm extends Popup {
         this._formElement.addEventListener('submit', this._handleSubmit);
 
     }
+
 
     openPopup() {
         if (this._getCallBack) {
@@ -55,7 +68,7 @@ export default class PopupWithForm extends Popup {
 
     }
 
-    closePopup() {
+    closePopup = () => {
 
         super.closePopup();
         this._formElement.reset();
