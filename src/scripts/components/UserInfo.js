@@ -10,9 +10,6 @@ export default class UserInfo {
     }
 
     setUserInfo = (data) => {
-        this._job = data.about;
-        this._title = data.name;
-        this._avatar = data.avatar;
         this._id = data._id;
         this._jobElement.textContent = data.about || '';
         this._titleElement.textContent = data.name || '';
@@ -25,12 +22,6 @@ export default class UserInfo {
             title: this._titleElement.textContent,
             job: this._jobElement.textContent
         };
-    }
-
-    getUserAvatar(){
-        return {
-            avatar: this._avatar
-        }
     }
 
     getUserId() {

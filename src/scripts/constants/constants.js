@@ -28,8 +28,7 @@ export const viewPopupConfiguration = {
 }
 
 export const configurationForm = {
-    selectorInput: '.popup__field',
-    buttonSelectorSubmit: '.popup__save-button',
+    selectorInput: '.popup__field'
 }
 
 export const configurationPopup = {

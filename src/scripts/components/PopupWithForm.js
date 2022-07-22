@@ -4,7 +4,7 @@ export default class PopupWithForm extends Popup {
     constructor(popupSelector,
                 formName,
                 configPopup,
-                {selectorInput, buttonSelectorSubmit},
+                {selectorInput},
                 handleCardSubmit,
                 {normalCaption, activeCaption},
                 getCallBack = null) {
@@ -12,11 +12,10 @@ export default class PopupWithForm extends Popup {
         this._formName = formName;
         this._submitCallBack = handleCardSubmit;
         this._selectorInput = selectorInput;
-        this._buttonSelectorSubmit = buttonSelectorSubmit;
         this._getCallBack = getCallBack;
         this._formElement = document.forms[this._formName];
         this._listInput = Array.from(this._formElement.querySelectorAll(this._selectorInput));
-        this._saveButton = this._formElement.querySelector(this._buttonSelectorSubmit);
+        this._saveButton = this._formElement.querySelector('.popup__save-button');
         this._normalCaption = normalCaption;
         this._activeCaption = activeCaption;
     }
